@@ -8,8 +8,8 @@ branches:
   - master
 
 env: 
-#  - QT=qt4
-  - QT=qt5
+  - QT=qt4
+#  - QT=qt5
 
 before_install:
   - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
@@ -26,6 +26,7 @@ before script:
 script: 
   - qmake texstudio.pro CONFIG+=debug
   - make
+  - export QT_QPA_PLATFORM=minimal
   - ./texstudio --auto-tests
 
 
