@@ -3,10 +3,19 @@ language: cpp
 dist: trusty
 sudo: required
 
+branches:
+  only:
+  - master
+
+env: 
+  - QT=qt4
+  - QT=qt5
+
 before_install:
   - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
   - sudo apt-get -qq update
-  - sudo apt-get install -y qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
+  - if [ $QT = qt5 ]; then sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config; fi
+  - if [ $QT = qt4 ]; then sudo apt-get install qt4-qmake  libpoppler-qt4-dev zlib1g-dev pkg-config libx11-dev; fi
 script: 
   - qmake texstudio.pro
   - make
