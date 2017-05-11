@@ -8,7 +8,7 @@ branches:
   - master
 
 env: 
-  - QT=qt4
+#  - QT=qt4
   - QT=qt5
 
 before_install:
@@ -16,6 +16,15 @@ before_install:
   - sudo apt-get -qq update
   - if [ $QT = qt5 ]; then sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config; fi
   - if [ $QT = qt4 ]; then sudo apt-get install qt4-qmake  libpoppler-qt4-dev zlib1g-dev pkg-config libx11-dev; fi
+
+before script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+
 script: 
-  - qmake texstudio.pro
+  - qmake texstudio.pro CONFIG+=debug
   - make
+  - texstudio --auto-tests
+
+
