@@ -1,0 +1,5 @@
+language: cpp
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
+script: qmake && make
