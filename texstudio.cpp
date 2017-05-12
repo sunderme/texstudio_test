@@ -2869,14 +2869,18 @@ void Texstudio::fileCloseAll()
 
 void Texstudio::fileExit()
 {
+    qDebug()<<"normal exit";
 	if (canCloseNow())
 		qApp->quit();
 }
 
 void Texstudio::fileExitWithError()
 {
-    if (canCloseNow())
+    qDebug()<<"error exit";
+    if (canCloseNow()){
+        qDebug()<<"can close";
         qApp->exit(1);
+    }
 }
 
 bool Texstudio::saveAllFilesForClosing()
@@ -6746,9 +6750,11 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		}
         if (args.contains("--auto-tests")) {
             if(result){
-                QTimer::singleShot(1000, this, SLOT(fileExitWithError()));
+                qDebug()<<"fine";
+                QTimer::singleShot(2000, this, SLOT(fileExit()));
             }else{
-                QTimer::singleShot(1000, this, SLOT(fileExit()));
+                qDebug()<<"err";
+                QTimer::singleShot(2000, this, SLOT(fileExitWithError()));
             }
         }
 	}
