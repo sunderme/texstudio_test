@@ -6750,7 +6750,6 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		}
         if (args.contains("--auto-tests")) {
             if(result){
-                qDebug()<<"fine";
                 QTimer::singleShot(4000, this, SLOT(fileExit()));
             }else{
                 qDebug()<<"err";
