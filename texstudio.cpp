@@ -6779,6 +6779,8 @@ bool Texstudio::executeTests(const QStringList &args)
 	bool allTests = args.contains("--execute-all-tests")
 	                //execute all tests once a week or if command paramter is set
 	                || (configManager.debugLastFullTestRun.daysTo(myself.lastModified()) > 6);
+    if(autoTests)
+        allTests=false;
     if (args.contains("--execute-tests") || myself.lastModified() != configManager.debugLastFileModification || allTests || autoTests) {
 		fileNew();
         if (!currentEditorView() || !currentEditorView()->editor){
