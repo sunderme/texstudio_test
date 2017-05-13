@@ -2869,16 +2869,13 @@ void Texstudio::fileCloseAll()
 
 void Texstudio::fileExit()
 {
-    qDebug()<<"normal exit";
-	if (canCloseNow())
-		qApp->quit();
+    if (canCloseNow())
+	qApp->quit();
 }
 
 void Texstudio::fileExitWithError()
 {
-    qDebug()<<"error exit";
     if (canCloseNow()){
-        qDebug()<<"can close";
         qApp->exit(1);
     }
 }
@@ -6745,14 +6742,13 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 	if (realCmdLine) { //only at start
         bool result=executeTests(args);
 
-		if (args.contains("--update-translations")) {
-			generateAddtionalTranslations();
-		}
+	if (args.contains("--update-translations")) {
+	    generateAddtionalTranslations();
+	}
         if (args.contains("--auto-tests")) {
             if(result){
                 QTimer::singleShot(4000, this, SLOT(fileExit()));
             }else{
-                qDebug()<<"err";
                 QTimer::singleShot(4000, this, SLOT(fileExitWithError()));
             }
         }
