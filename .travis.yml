@@ -9,7 +9,8 @@ branches:
 
 env: 
   - QT=qt4
-#  - QT=qt5
+  - QT=qt5
+  - QT=qt5NoPoppler
 
 before_install:
   - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
@@ -17,6 +18,8 @@ before_install:
   - sudo apt-get install gdb
   - if [ $QT = qt5 ]; then sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config; fi
   - if [ $QT = qt4 ]; then sudo apt-get install qt4-qmake  libpoppler-qt4-dev zlib1g-dev pkg-config libx11-dev; fi
+  - if [ $QT = qt5NoPoppler ]; then sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev zlib1g-dev pkg-config; fi
+
 
 before_script:
   - "export DISPLAY=:99.0"
@@ -25,8 +28,9 @@ before_script:
 
 script: 
   - qmake texstudio.pro CONFIG+=debug
+  - if [ $QT = qt5NoPoppler ]; then qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1 ; fi
   - make
   - export QT_QPA_PLATFORM=minimal
-  - ./texstudio --auto-tests
+  - if [ $QT = qt5 ]; then ./texstudio --auto-tests; fi
 
 
