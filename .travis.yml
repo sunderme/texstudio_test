@@ -27,8 +27,7 @@ before_script:
   - sleep 3 # give xvfb some time to start
 
 script: 
-  - qmake texstudio.pro CONFIG+=debug
-  - if [ $QT = qt5NoPoppler ]; then qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1 ; fi
+  - if [ $QT = qt5NoPoppler ]; then qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1 ; else qmake texstudio.pro CONFIG+=debug ; fi
   - make
   - export QT_QPA_PLATFORM=minimal
   - if [ $QT = qt5 ]; then ./texstudio --auto-tests; fi
