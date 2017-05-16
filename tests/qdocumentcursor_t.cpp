@@ -658,6 +658,11 @@ void QDocumentCursorTest::bidiMoving_data(){
 	const int L = (int)QDocumentCursor::Left;
 	const int R = (int)QDocumentCursor::Right;
 
+    if (m_autoTests){
+        qDebug("skipped bidi tests");
+        return;
+    }
+
 	QString withMarkers = QString::fromUtf8("\n" "ه‎\\glqq{}‎‎" "\n"); //rendered as \glqq{}o
 	QTest::newRow("with all markers 1")  << withMarkers << 1<<0  << 1 << R << 2<<0;
 	QTest::newRow("with all markers 2")  << withMarkers << 1<<0  << 1 << L << 1<<11; //????? that is not the same position as if run manually (there it skips 11 and goes to 10)
