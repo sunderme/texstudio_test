@@ -1491,7 +1491,7 @@ void QDocument::markFormatCacheDirty(){
 */
 QDocumentLine QDocument::line(int line) const
 {
-	return QDocumentLine(m_impl ? m_impl->at(line) : 0);
+	return QDocumentLine(m_impl->at(line));
 }
 
 /*!
