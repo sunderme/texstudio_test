@@ -482,7 +482,7 @@
     <message>
         <location filename="buildmanager.cpp" line="318"/>
         <source>Default Compiler</source>
-        <translation type="unfinished"/>
+        <translation>کامپایلر پیش فرض</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="320"/>
@@ -2555,7 +2555,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4225"/>
         <source>Cache Size:</source>
-        <translation type="unfinished"/>
+        <translation>اندازه Cache:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4235"/>
@@ -5020,12 +5020,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2370"/>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"/>
+        <translation>بزرگنمایی را &amp;زیاد کن</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2371"/>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"/>
+        <translation>بزرگنمایی را &amp;کم کن</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2377"/>
@@ -5690,7 +5690,7 @@ You can now enter the password:</source>
     <message>
         <location filename="toolwidgets.cpp" line="127"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"/>
+        <translation>بزرگنمایی را به حالت اول باز گردان</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="128"/>
@@ -5718,7 +5718,7 @@ You can now enter the password:</source>
     <message>
         <location filename="buildmanager.cpp" line="2400"/>
         <source>Process started: %1</source>
-        <translation type="unfinished"/>
+        <translation>فرآیند آغاز شد: ٪1</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2406"/>
@@ -5805,7 +5805,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="778"/>
         <source>Failure</source>
-        <translation type="unfinished"/>
+        <translation>شکست</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="798"/>
@@ -6716,7 +6716,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="208"/>
         <source>selection</source>
-        <translation type="unfinished"/>
+        <translation>انتخاب کردن</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="209"/>
@@ -6931,7 +6931,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="80"/>
         <source>Font Family</source>
-        <translation type="unfinished"/>
+        <translation>خانواده خط</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
@@ -7555,7 +7555,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="randomtextgenerator.ui" line="201"/>
         <source>Punctation</source>
-        <translation type="unfinished"/>
+        <translation>نقطه گذاری</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="208"/>
@@ -7718,7 +7718,7 @@ Do you trust this script?</source>
     <message>
         <location filename="searchresultwidget.cpp" line="65"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>پاک کن</translation>
     </message>
 </context>
 <context>
@@ -8343,7 +8343,7 @@ failed.</source>
     <message>
         <location filename="texdocdialog.ui" line="14"/>
         <source>Packages Help (Texdoc)</source>
-        <translation type="unfinished"/>
+        <translation>راهنمای بسته‌ها (Texdoc)</translation>
     </message>
     <message>
         <location filename="texdocdialog.ui" line="45"/>
@@ -8512,7 +8512,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="379"/>
         <source>TeX files</source>
-        <translation type="unfinished"/>
+        <translation>فایل‌های TeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="380"/>
@@ -8554,7 +8554,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="556"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>پنل کناری</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="591"/>
@@ -8631,7 +8631,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="617"/>
         <source>Left/Right Brackets</source>
-        <translation type="unfinished"/>
+        <translation>براکت‌های چپ/راست</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="618"/>
@@ -8711,12 +8711,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="770"/>
         <source>Save &amp;As...</source>
-        <translation>ذخیره کن &amp;با پسوند</translation>
+        <translation>&amp;با پسوند... ذخیره کن </translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="771"/>
         <source>Save A&amp;ll</source>
-        <translation type="unfinished"/>
+        <translation>ه&amp;مه را ذخیره کن</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="772"/>
@@ -9062,7 +9062,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="868"/>
         <source>Previous mark</source>
-        <translation type="unfinished"/>
+        <translation>نشانه قبلی</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="869"/>
@@ -9286,7 +9286,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="949"/>
         <source>Select Line</source>
-        <translation>خط را انتخاب کنخط را انتخاب کن</translation>
+        <translation>خط را انتخاب کن</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="950"/>
@@ -9653,7 +9653,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1059"/>
         <source>Quick &amp;Start...</source>
-        <translation>راه‌اندازی%سریع</translation>
+        <translation>راه‌اندازی &amp;سریع...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1060"/>
@@ -9765,7 +9765,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1144"/>
         <source>Statusbar</source>
-        <translation type="unfinished"/>
+        <translation>نوار حالت</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1148"/>
@@ -9791,13 +9791,13 @@ failed.</source>
         <location filename="texstudio.cpp" line="1155"/>
         <location filename="texstudio.cpp" line="1160"/>
         <source>Everything</source>
-        <translation type="unfinished"/>
+        <translation>همه چیز</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1156"/>
         <location filename="texstudio.cpp" line="1161"/>
         <source>Nearest Block</source>
-        <translation type="unfinished"/>
+        <translation>نزدیکترین بلوک</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1158"/>
@@ -9858,7 +9858,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1185"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"/>
+        <translation>بزرگنمایی را به حالت اول باز گردان</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1188"/>
@@ -9936,7 +9936,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1248"/>
         <source>Packages Help...</source>
-        <translation type="unfinished"/>
+        <translation>راهنمای بسته‌ها...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1251"/>
@@ -10068,7 +10068,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="1590"/>
         <source>Root</source>
         <comment>explicit root document</comment>
-        <translation type="unfinished"/>
+        <translation>ریشه</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1591"/>
@@ -10153,7 +10153,7 @@ Otherwise there might be random errors and crashes.</source>
     <message>
         <location filename="texstudio.cpp" line="2613"/>
         <source>Save As</source>
-        <translation>ذخیره کن با پسوند</translation>
+        <translation>با پسوند ذخیره کن </translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="2630"/>
@@ -10936,7 +10936,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="textanalysis.ui" line="26"/>
         <source>Count</source>
         <extracomment>count as verb</extracomment>
-        <translation type="unfinished"/>
+        <translation>شمارش</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="33"/>
@@ -11179,7 +11179,7 @@ If not, end characters are ignored.</source>
         <location filename="textanalysis.cpp" line="63"/>
         <source>Count</source>
         <comment>count as noun</comment>
-        <translation type="unfinished"/>
+        <translation>شمارش</translation>
     </message>
     <message>
         <location filename="textanalysis.cpp" line="64"/>
@@ -11189,7 +11189,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="textanalysis.cpp" line="446"/>
         <source>CSV file</source>
-        <translation type="unfinished"/>
+        <translation>فایل CSV</translation>
     </message>
     <message>
         <location filename="textanalysis.cpp" line="446"/>
@@ -11212,7 +11212,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="thesaurusdialog.cpp" line="136"/>
         <source>Starts With ...</source>
-        <translation type="unfinished"/>
+        <translation>با ... شروع می شود</translation>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="137"/>
