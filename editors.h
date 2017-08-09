@@ -32,8 +32,6 @@ public:
 	void setCurrentEditor(LatexEditorView *edView);
 
 	QList<LatexEditorView *> editors();
-	int tabGroupIndexFromEditor(LatexEditorView *edView) const;
-	void moveToTabGroup(LatexEditorView *edView, int groupIndex, int targetIndex);
 
 signals:
 	void currentEditorChanged();
@@ -61,6 +59,7 @@ protected slots:
 	void changeSplitOrientation();
 
 protected:
+	int tabGroupIndexFromEditor(LatexEditorView *edView) const;
 	TxsTabWidget *tabWidgetFromEditor(LatexEditorView *edView) const;
 
 private:

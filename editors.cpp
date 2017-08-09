@@ -454,6 +454,19 @@ void Editors::moveToTabGroup(LatexEditorView *edView, int groupIndex, int target
 	moveToTabGroup(edView, tabGroups[groupIndex], targetIndex);
 }
 
+
+/*!
+ * Move the editor to the given tabWidget at position targetIndex (if < 0, append).
+ */
+void Editors::moveToTabGroup(LatexEditorView *edView, int groupIndex, int targetIndex)
+{
+	if (groupIndex < 0)
+		groupIndex = 0;
+	if (groupIndex > tabGroups.length() -1)
+		groupIndex = tabGroups.length() -1;
+	moveToTabGroup(edView, tabGroups[groupIndex], targetIndex);
+}
+
 /*!
  * Move the editor to the given tabWidget at position targetIndex (if < 0, append).
  */

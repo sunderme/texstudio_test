@@ -7,7 +7,6 @@
 struct FileInSession
 {
 	QString fileName;
-	int editorGroup;
 	int cursorLine;
 	int cursorCol;
 	int firstLine;
