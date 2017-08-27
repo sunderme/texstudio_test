@@ -3498,7 +3498,7 @@ QString PDFDocument::debugSyncTeX(const QString &filename)
 	if (pdfFile.isEmpty() && QFile::exists(baseName + ".pdf")) pdfFile = baseName + ".pdf";
 	else pdfFile = filename;
 
-	synctex_scanner_t scanner = synctex_scanner_new_with_output_file(QFile::encodeName(pdfFile).data(), NULL, 1);
+    synctex_scanner_p scanner = synctex_scanner_new_with_output_file(QFile::encodeName(pdfFile).data(), NULL, 1);
 	if (!scanner) return "Failed to load file";
 
 
@@ -3507,7 +3507,7 @@ QString PDFDocument::debugSyncTeX(const QString &filename)
 	synctex_scanner_display(scanner);
 
 	result.append("Inputs:");
-	synctex_node_t node = synctex_scanner_input(scanner);
+    synctex_node_p node = synctex_scanner_input(scanner);
 	while (node != NULL) {
 		int tag = synctex_node_tag(node);
 		const char * name = tag >= 0 ? synctex_scanner_get_name(scanner, tag) : NULL;
@@ -3520,7 +3520,7 @@ QString PDFDocument::debugSyncTeX(const QString &filename)
 	result.append("Sheets:");
 	node = synctex_sheet(scanner, 1);
 	while (node != NULL) {
-		synctex_node_t cur = synctex_node_child(node);
+        synctex_node_p cur = synctex_node_child(node);
 		int page = synctex_node_page(cur);
 		QSet<int> inputs;
 		while (cur != NULL) {
@@ -3561,7 +3561,7 @@ void PDFDocument::loadSyncData()
 	}
 }
 
-QFileInfo synctex_scanner_get_name_fileinfo(const QDir &curDir, synctex_scanner_t scanner, synctex_node_t node, const char **rawName = 0)
+QFileInfo synctex_scanner_get_name_fileinfo(const QDir &curDir, synctex_scanner_p scanner, synctex_node_p node, const char **rawName = 0)
 {
 	QFileInfo fileinfo;
 
@@ -3588,9 +3588,9 @@ void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
 	pdfWidget->setHighlightPath(-1, QPainterPath());
 	pdfWidget->update();
 	if (synctex_edit_query(scanner, pageIndex + 1, pos.x(), pos.y()) > 0) {
-		synctex_node_t node;
+        synctex_node_p node;
 		QDir curDir(QFileInfo(curFile).canonicalPath());
-		while ((node = synctex_next_result(scanner)) != NULL) {
+        while ((node = synctex_scanner_next_result(scanner)) != NULL) {
 			QString fullName = synctex_scanner_get_name_fileinfo(curDir, scanner, node).canonicalFilePath();
 			if (!globalConfig->syncFileMask.trimmed().isEmpty()) {
 				bool found = false;
@@ -3639,7 +3639,7 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, DisplayFl
 
 	// find the name synctex is using for this source file...
 	QDir curDir(QFileInfo(curFile).canonicalPath());
-	synctex_node_t node = synctex_scanner_input(scanner);
+    synctex_node_p node = synctex_scanner_input(scanner);
 	const char *name;
 	bool found = false;
 	while (node != NULL) {
@@ -3653,10 +3653,10 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, DisplayFl
 	if (!found)
 		return -1;
 
-	if (synctex_display_query(scanner, name, lineNo, 0) > 0) {
+    if (synctex_display_query(scanner, name, lineNo, 0, 0) > 0) { //TODO: page int set to 0 , please fix/optimize
 		int page = -1;
 		QPainterPath path;
-		while ((node = synctex_next_result(scanner)) != NULL) {
+        while ((node = synctex_scanner_next_result(scanner)) != NULL) {
 			if (page == -1)
 				page = synctex_node_page(node);
 			if (synctex_node_page(node) != page)
