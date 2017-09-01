@@ -1,5 +1,16 @@
 language: cpp
 
+matrix:
+  include:
+    - env: QT=qt5osx
+      os: osx
+    - env: QT=qt4
+      os: linux
+    - env: QT=qt5
+      os: linux
+    - env: QT=qt5NoPoppler
+      os: linux      
+
 dist: trusty
 sudo: required
 
@@ -7,27 +18,13 @@ branches:
   only:
   - master
 
-env: 
-  - QT=qt4
-  - QT=qt5
-  - QT=qt5NoPoppler
-
 before_install:
-  - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
-  - sudo apt-get -qq update
-  - sudo apt-get install gdb
-  - if [ $QT = qt5 ]; then sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config; fi
-  - if [ $QT = qt4 ]; then sudo apt-get install qt4-qmake  libpoppler-qt4-dev zlib1g-dev pkg-config libx11-dev; fi
-  - if [ $QT = qt5NoPoppler ]; then sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev zlib1g-dev pkg-config; fi
-
+  - ${TRAVIS_BUILD_DIR}/travis-ci/get-dependencies.sh
 
 before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+  - ${TRAVIS_BUILD_DIR}/travis-ci/configure.sh 
 
 script: 
-  - if [ $QT = qt5NoPoppler ]; then qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1 ; else qmake texstudio.pro CONFIG+=debug ; fi
   - make
   - export QT_QPA_PLATFORM=minimal
   - if [ $QT = qt5 ]; then ./texstudio --auto-tests; fi
