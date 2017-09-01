@@ -15,7 +15,9 @@ if [ "${QT}" = "qt5" ]; then
 	sleep 3 # give xvfb some time to start
 	qmake texstudio.pro CONFIG+=debug
 elif [ $QT = qt5NoPoppler ]; then
-	qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1
+	qmake texstudio.pro NO_POPPLER_PREVIEW=1
+elif [ $QT = qt4 ]; then
+	qmake texstudio.pro 
 elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	qmake texstudio.pro CONFIG-=debug
 fi
