@@ -77,6 +77,8 @@ if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 		"publish": true
 	}
 EOF
+
+cat bintray.json
 fi
 
 cd "${TRAVIS_BUILD_DIR}"
