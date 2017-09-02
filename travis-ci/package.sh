@@ -63,10 +63,10 @@ if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 			"name": "texstudio",
 			"repo": "texstudio",
 			"subject": "sunderme"
-		},bg
+		},
 
 		"version": {
-			"name": "${VERSION_NAME}",b
+			"name": "${VERSION_NAME}",
 			"released": "${RELEASE_DATE}",
 			"gpgSign": false
 		},
