@@ -50,8 +50,8 @@ echo "VERSION_NAME = ${VERSION_NAME}"
 
 
 if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
-	print_info "Running CPack"
-	cpack --verbose
+	print_info "Running macdeployqt"
+	/usr/local/opt/qt/bin/macdeployqt texstudio.app -dmg	
 
 	print_info "Renaming .dmg"
 	mv "${TRAVIS_BUILD_DIR}/"texstudio.dmg "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_OS_NAME}-${VERSION_NAME}.dmg"
@@ -63,9 +63,10 @@ if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 			"name": "texstudio",
 			"repo": "texstudio",
 			"subject": "sunderme"
-		},
+		},bg
+
 		"version": {
-			"name": "${VERSION_NAME}",
+			"name": "${VERSION_NAME}",b
 			"released": "${RELEASE_DATE}",
 			"gpgSign": false
 		},
