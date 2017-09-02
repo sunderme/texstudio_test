@@ -72,8 +72,8 @@ class Poppler < Formula
     :because => "poppler, pdftohtml, pdf2image, and xpdf install conflicting executables"
 
   resource "font-data" do
-    url "https://poppler.freedesktop.org/poppler-data-0.4.7.tar.gz"
-    sha256 "e752b0d88a7aba54574152143e7bf76436a7ef51977c55d6bd9a48dccde3a7de"
+    url "https://poppler.freedesktop.org/poppler-data-0.4.8.tar.gz"
+    sha256 "1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf72872"
   end
 
   needs :cxx11 if build.with?("qt") || MacOS.version < :mavericks
