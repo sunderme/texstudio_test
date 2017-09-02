@@ -22,6 +22,7 @@ before_install:
   - ${TRAVIS_BUILD_DIR}/travis-ci/get-dependencies.sh
 
 before_script:
+  - export DISPLAY=:99.0
   - ${TRAVIS_BUILD_DIR}/travis-ci/configure.sh 
 
 script: 
