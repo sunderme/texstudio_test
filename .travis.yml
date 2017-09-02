@@ -26,12 +26,11 @@ script:
 after_success:
 - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
 deploy:
-  matrix:
   - provider: bintray
     skip_cleanup: true
-    file: "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json"
+    file: ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
     user: sunderme
     on:
-      condition: "-f ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json"
+      condition: -f ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
     key:
       secure: KO4K2bvulOZQOM83FJnMBoVX4eoMLevchzBtMyq86AB+kSuQBJCIL1a4IuKj5ADYoyUugulVytJj/FgjQ0wXljmyLQxkPPuMlBg1F081nWPbQCPbHDMQGyQnEoPOf7hml92Y9+88BzWeCfEYvZ+2x7SpO7bZSWiifCfgceKkYMOeDBbgTyfe/Dzwes+1iDXhGAPDkPI7uvt+gbbWo9SEhIjsIEov/R/65VCssq1S5D3cJHubpFpG961wFdjB/+QzGz3eJvfA8GLrukKScOArKJobW9A1gFzaUeHR8XyJL+b9eQdiQuphcrVSTgepZ51w8hqU9Qru7udbXF4scTuABTsXotXVluJHUNTdyBPG+n+D+NhZiheSBo734By/a1g46NYL54geKXnRC2aLkZggohTYHo+t8wcRv+tsmKQ6Jj2ruheoIVWaZabBZdq+FYKfZ4mEqCYD3xRhO7IHUYm4TexqeV8FmYsGgdJ3MKKmHOcHjFwndgQKDrM63fAzhsqBb3L3qmE53EfWU93iulfLBWA4906uzjSMb7bPE04cJxIPEaq2FhOitTW9ZsiUI2rw2P6DB9UCfXeTXO52La2dZtjmO/VTHJslbWe/H83QRRYzYdr+6WIcXINHNDTrQfz9FavYEJqPSQl4Loo5guweY11y7eX+C0cEeA8nJTkn2yw=
