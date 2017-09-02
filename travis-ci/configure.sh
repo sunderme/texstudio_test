@@ -11,6 +11,9 @@ print_headline "Configuring for building for ${QT} on ${TRAVIS_OS_NAME}"
 
 if [ "${QT}" = "qt5" ]; then
 	qmake texstudio.pro CONFIG+=debug
+	export DISPLAY=:99.0
+  	sh -e /etc/init.d/xvfb start
+	sleep 3
 elif [ $QT = qt5NoPoppler ]; then
 	qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1
 elif [ $QT = qt4 ]; then
