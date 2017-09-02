@@ -23,7 +23,7 @@ POPPLERDATA_SHA256="1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf7
 # Gather information
 
 # GNU extensions for sed are not supported; on Linux, --posix mimicks this behaviour
-TXS_VERSION=$(sed -ne 's/^#define TXSVERSION "\(.*\)"$/\1/p' utilsVersion.h)
+TXS_VERSION=$(sed -ne 's/^#define TXSVERSION "\(.*\)".*$/\1/p' utilsVersion.h)
 echo "TXS_VERSION = ${TXS_VERSION}"
 
 GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
@@ -72,7 +72,7 @@ if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 		},
 		"files":
 		[
-			{"includePattern": "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_OS_NAME}-${VERSION_NAME}.dmg", "uploadPattern": "TeXworks-${TRAVIS_OS_NAME}-${VERSION_NAME}.dmg"}
+			{"includePattern": "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_OS_NAME}-${VERSION_NAME}.dmg", "uploadPattern": "texstudio-${TRAVIS_OS_NAME}-${VERSION_NAME}.dmg"}
 		],
 		"publish": true
 	}
