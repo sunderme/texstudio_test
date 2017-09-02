@@ -16,7 +16,7 @@ elif [ $QT = qt5NoPoppler ]; then
 elif [ $QT = qt4 ]; then
 	qmake texstudio.pro CONFIG+=debug
 elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
-	qmake texstudio.pro CONFIG-=debug
+	/usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
 fi
 
 cd "${TRAVIS_BUILD_DIR}"
