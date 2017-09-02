@@ -1,45 +1,37 @@
 language: cpp
-
 matrix:
   include:
-    - env: QT=qt5osx
-      os: osx
-    - env: QT=qt4
-      os: linux
-    - env: QT=qt5
-      os: linux
-    - env: QT=qt5NoPoppler
-      os: linux      
-
+  - env: QT=qt5osx
+    os: osx
+  - env: QT=qt4
+    os: linux
+  - env: QT=qt5
+    os: linux
+  - env: QT=qt5NoPoppler
+    os: linux
 dist: trusty
 sudo: required
-
 branches:
   only:
   - master
-
 before_install:
-  - ${TRAVIS_BUILD_DIR}/travis-ci/get-dependencies.sh
-
+- "${TRAVIS_BUILD_DIR}/travis-ci/get-dependencies.sh"
 before_script:
-  - export DISPLAY=:99.0
-  - ${TRAVIS_BUILD_DIR}/travis-ci/configure.sh 
-
-script: 
-  - make
-  - export QT_QPA_PLATFORM=minimal
-  - if [ $QT = qt5 ]; then ./texstudio --auto-tests; fi
-
+- export DISPLAY=:99.0
+- "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+script:
+- make
+- export QT_QPA_PLATFORM=minimal
+- if [ $QT = qt5 ]; then ./texstudio --auto-tests; fi
 after_success:
-  - ${TRAVIS_BUILD_DIR}/travis-ci/package.sh
-
+- "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
 deploy:
+  matrix:
   - provider: bintray
     skip_cleanup: true
-    file: ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
+    file: "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json"
     user: sunderme
     on:
-      condition: -f ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
+      condition: "-f ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json"
     key:
-      secure: mfUxbGJvHfCEkVYWQKaibXooT+An8co5MJSUxY/cx1OPEfC587FbBITcsLqXQ8+SV3bz96Dn571PJYNwo6SKLxYHdukiIj+r7AbqWPFzdHRg/WSf5lRspe7elL7xsjoQmRyFF5CLiqoHl0DsNwLsOexvEBH/MerOWayG51kaBe8pnXMWfT8a0M30F2p3UaEECAfwXSRaCIL8Rxn5V9W5lG0jcNOvI4x+4qMDINtJP20AM39bUBUgQV5s7H2KLQJR8NVm5opRfFNG5r23gSDC4wN7B58Ky5xLjHkFwD9teQXTZQiigs2IVK6/0c8iOQfRCHxAj4jQaZtb4QG10y5qciSM1V1WNUqsCHj9yOetHuk3sQDfC6+SsS7m893xyGgEYBaEq6vsaIE1hVa0vbbW6CttIzWIIVEY8a4NdINpJJbXsPJabTmruHJKTkhNdiqhaYF+2CiGG3Fex4zVnEqz4TPQhtCUsi2Pnryz9SRSQTkzb3gPOBNhefl7IdzJN/xPHh4Y3K/+5bz0RUwAUpJLxzZx+XSJdS693GQQUp6JRWlKcXWPJ1smEBHSajWnTXdRaJQPTVBCWXi5D5a6oZLZw/pgDb346YrxCWHZq2b02fpQ7h5i05WtXE09QlUSAx5EldA4fp/NdgljDHVcuBGyNVjMZbeNqw707mnDsnYiUNA=
-
+      secure: KO4K2bvulOZQOM83FJnMBoVX4eoMLevchzBtMyq86AB+kSuQBJCIL1a4IuKj5ADYoyUugulVytJj/FgjQ0wXljmyLQxkPPuMlBg1F081nWPbQCPbHDMQGyQnEoPOf7hml92Y9+88BzWeCfEYvZ+2x7SpO7bZSWiifCfgceKkYMOeDBbgTyfe/Dzwes+1iDXhGAPDkPI7uvt+gbbWo9SEhIjsIEov/R/65VCssq1S5D3cJHubpFpG961wFdjB/+QzGz3eJvfA8GLrukKScOArKJobW9A1gFzaUeHR8XyJL+b9eQdiQuphcrVSTgepZ51w8hqU9Qru7udbXF4scTuABTsXotXVluJHUNTdyBPG+n+D+NhZiheSBo734By/a1g46NYL54geKXnRC2aLkZggohTYHo+t8wcRv+tsmKQ6Jj2ruheoIVWaZabBZdq+FYKfZ4mEqCYD3xRhO7IHUYm4TexqeV8FmYsGgdJ3MKKmHOcHjFwndgQKDrM63fAzhsqBb3L3qmE53EfWU93iulfLBWA4906uzjSMb7bPE04cJxIPEaq2FhOitTW9ZsiUI2rw2P6DB9UCfXeTXO52La2dZtjmO/VTHJslbWe/H83QRRYzYdr+6WIcXINHNDTrQfz9FavYEJqPSQl4Loo5guweY11y7eX+C0cEeA8nJTkn2yw=
