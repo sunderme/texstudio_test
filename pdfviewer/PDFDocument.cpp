@@ -1324,7 +1324,7 @@ void PDFWidget::setTool(int tool)
 	currentTool = tool;
 	globalConfig->editTool = tool;
 	PDFScrollArea *scrollArea = getScrollArea();
-	if (scrollArea) scrollArea->setTouchPanGestureActive(tool == kScroll);
+	if (scrollArea) UtilsUi::enableTouchScrolling(scrollArea, tool == kScroll);
 	updateCursor();
 }
 
