@@ -80,7 +80,7 @@ class Poppler < Formula
 
   def install
     ENV.cxx11 if build.with?("qt") || MacOS.version < :mavericks
-    ENV["LIBOPENJPEG_CFLAGS"] = "-I#{Formula["openjpeg"].opt_include}/openjpeg-2.2"
+#    ENV["LIBOPENJPEG_CFLAGS"] = "-I#{Formula["openjpeg"].opt_include}/openjpeg-2.2"
 
     args = %W[
       --disable-dependency-tracking
