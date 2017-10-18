@@ -156,6 +156,9 @@ void SearchQuery::replaceAll()
 LabelSearchQuery::LabelSearchQuery(QString label) :
 	SearchQuery(label, label, IsWord | IsCaseSensitive | SearchAgainAllowed | ReplaceAllowed)
 {
+	mModel = new LabelSearchResultModel(this);
+	mModel->setSearchExpression(label, label, flag(IsCaseSensitive), flag(IsWord), flag(IsRegExp));
+
 	mScope = ProjectScope;
 	mType = tr("Label Search");
 	mModel->setAllowPartialSelection(false);

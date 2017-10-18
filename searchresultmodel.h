@@ -4,6 +4,7 @@
 #include "mostQtHeaders.h"
 
 class QDocument;
+class QDocumentLine;
 class QDocumentLineHandle;
 struct SearchInfo {
 	QPointer<QDocument> doc;
@@ -69,6 +70,17 @@ private:
 	bool mIsWord, mIsCaseSensitive, mIsRegExp;
 	bool mAllowPartialSelection;
 	QFont mLineFont;
+};
+
+
+class LabelSearchResultModel : public SearchResultModel
+{
+	Q_OBJECT
+
+public:
+	LabelSearchResultModel(QObject *parent = 0);
+
+	QList<SearchMatch> getSearchMatches(const QDocumentLine &docline) const;
 };
 
 #endif // SEARCHRESULTMODEL_H

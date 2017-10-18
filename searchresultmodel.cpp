@@ -404,3 +404,40 @@ int SearchResultModel::getNextSearchResultColumn(const QString &text, int col)
 	}
 	return i_old;
 }
+
+
+LabelSearchResultModel::LabelSearchResultModel(QObject *parent) : SearchResultModel(parent)
+{
+}
+
+/*!
+ * This is a workaround:
+ * In contrast to LabelSearchQuery::run() which uses the internal label information, this
+ * function relies only on textual matching. It's currently only used for highlighting the
+ * results. The actual search and replace are handled by the query and have always been correct.
+ *
+ * To reduce the chance of false highlighting such as "label \\ref{label}", we assume that
+ * labels always appear in curly braces and only match those occurences.
+ *
+ * A clean solution would have to track not only the lines but also the column positions
+ * within the lines. Alternatively, the QDocumentLine might be queried for the label positions
+ * of the matching type.
+ */
+QList<SearchMatch> LabelSearchResultModel::getSearchMatches(const QDocumentLine &docline) const
+{
+	QList<SearchMatch> matches = SearchResultModel::getSearchMatches(docline);
+	const QString &text = docline.text();
+
+	for (int i = matches.count() - 1; i >= 0; i--) {
+		const SearchMatch &match = matches.at(i);
+		if ((match.pos <= 0)
+				|| (match.pos + match.length >= text.length())
+				|| (text.at(match.pos-1) != '{')
+				|| (text.at(match.pos + match.length) != '}')
+			) {
+			matches.removeAt(i);
+			continue;
+		}
+	}
+	return matches;
+}
