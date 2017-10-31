@@ -2244,7 +2244,7 @@ QList<PDFDocument *> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
     : renderManager(0), curFileSize(0), menubar(NULL), exitFullscreen(0), watcher(NULL), reloadTimer(NULL), dwClock(0), dwOutline(0), dwFonts(0), dwInfo(0), dwOverview(0), dwSearch(0),
-      syncFromSourceBlock(false), syncToSourceBlock(false)
+      syncFromSourceBlocked(false), syncToSourceBlocked(false)
 {
 	REQUIRE(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
@@ -3603,9 +3603,9 @@ void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
 			}
 		}
 
-		syncFromSourceBlock = true;
+		syncFromSourceBlocked = true;
 		emit syncSource(fullName, node.line() - 1, activate, word.trimmed()); //-1 because txs is 0 based, but synctex seems to be 1 based
-		syncFromSourceBlock = false;
+		syncFromSourceBlocked = false;
 		break; // FIXME: currently we just take the first hit
 	}
 }
@@ -3615,7 +3615,7 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int colum
 	QSynctex::TeXSyncPoint sourcePoint(sourceFile, lineNo + 1, column + 1);  // synctex uses 1-based line and column
 	lastSyncPoint = sourcePoint;
 
-	if (!scanner.isValid() || syncFromSourceBlock)
+	if (!scanner.isValid() || syncFromSourceBlocked)
 		return -1;
 
 	// find the name synctex is using for this source file...
@@ -3648,13 +3648,13 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int colum
 		path.addRect(node.boxVisibleRect());
 	}
 	if (page > 0) {
-		syncToSourceBlock = true;
+		syncToSourceBlocked = true;
 		path.setFillRule(Qt::WindingFill);
 		if (path.isEmpty()) scrollArea->goToPage(page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
 		pdfWidget->setHighlightPath(page - 1, path);
 		pdfWidget->update();
 		updateDisplayState(displayFlags);
-		syncToSourceBlock = false;
+		syncToSourceBlocked = false;
 		//pdfWidget->repaint();
 		return page - 1;
 	}
@@ -3798,7 +3798,7 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 
 	//#endif
 
-	sync = sync && !syncToSourceBlock;
+	sync = sync && !syncToSourceBlocked;
 	if (globalConfig->followFromScroll && sync)
 		pdfWidget->syncCurrentPage(false);
 	if (actionSynchronize_multiple_views->isChecked() && sync)
