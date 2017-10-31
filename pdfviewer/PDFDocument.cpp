@@ -3176,20 +3176,20 @@ void PDFDocument::idleReload()
 
 void PDFDocument::runExternalViewer()
 {
-	emit runCommand("txs:///view-pdf-external", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+	emit runCommand("txs:///view-pdf-external", masterFile, QFileInfo(lastSyncPoint.filename), lastSyncPoint.line);
 }
 
 void PDFDocument::runInternalViewer()
 {
-	emit runCommand("txs:///view-pdf-internal --windowed --close-embedded", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+	emit runCommand("txs:///view-pdf-internal --windowed --close-embedded", masterFile, QFileInfo(lastSyncPoint.filename), lastSyncPoint.line);
 }
 
 void PDFDocument::toggleEmbedded()
 {
 	if (embeddedMode)
-		emit runCommand("txs:///view-pdf-internal --windowed --close-embedded", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+		emit runCommand("txs:///view-pdf-internal --windowed --close-embedded", masterFile, QFileInfo(lastSyncPoint.filename), lastSyncPoint.line);
 	else
-		emit runCommand("txs:///view-pdf-internal --embedded --close-windowed", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+		emit runCommand("txs:///view-pdf-internal --embedded --close-windowed", masterFile, QFileInfo(lastSyncPoint.filename), lastSyncPoint.line);
 }
 
 void PDFDocument::toggleAutoHideToolbars()
@@ -3202,7 +3202,7 @@ void PDFDocument::toggleAutoHideToolbars()
 
 void PDFDocument::runQuickBuild()
 {
-	emit runCommand("txs:///quick", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+	emit runCommand("txs:///quick", masterFile, QFileInfo(lastSyncPoint.filename), lastSyncPoint.line);
 }
 
 void PDFDocument::setGrid()
@@ -3612,10 +3612,8 @@ void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
 
 int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int column, DisplayFlags displayFlags)
 {
-	lineNo++; //input 0 based, synctex 1 based
-
-	lastSyncSourceFile = sourceFile;
-	lastSyncLineNumber = lineNo;
+	QSynctex::TeXSyncPoint sourcePoint(sourceFile, lineNo + 1, column + 1);  // synctex uses 1-based line and column
+	lastSyncPoint = sourcePoint;
 
 	if (!scanner.isValid() || syncFromSourceBlock)
 		return -1;
@@ -3628,7 +3626,7 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int colum
 	while (node.isValid()) {
 
 		QFileInfo fi = scanner.getNameFileInfo(curDir, node, &name);
-		if (fi == lastSyncSourceFile) {
+		if (fi == QFileInfo(sourcePoint.filename)) {
 			found = true;
 			break;
 		}
@@ -3640,7 +3638,7 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int colum
 	int page = -1;
 	QPainterPath path;
 
-	QSynctex::NodeIterator iter = scanner.displayQuery(name, lineNo, column, 0);  // TODO: page_hint set to 0 , please fix/optimize
+	QSynctex::NodeIterator iter = scanner.displayQuery(name, sourcePoint.line, sourcePoint.column, 0);  // TODO: page_hint set to 0 , please fix/optimize
 	while (iter.hasNext()) {
 		QSynctex::Node node = iter.next();
 		if (page == -1)
