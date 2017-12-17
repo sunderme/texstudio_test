@@ -8,6 +8,7 @@ sudo: required
 branches:
   only:
   - master
+  - /^\d+.\d+(.\d+)?(\S*)?$/
 before_install:
 - "${TRAVIS_BUILD_DIR}/travis-ci/get-dependencies.sh"
 before_script:
