@@ -8,7 +8,7 @@ sudo: required
 branches:
   only:
   - master
-  - /^\d+\.\d+(\.\d+)?(\S*)?$/
+  - /^\d+.\d+(.\d+)?(\S*)?$/
 before_install:
 - "${TRAVIS_BUILD_DIR}/travis-ci/get-dependencies.sh"
 before_script:
@@ -22,6 +22,7 @@ after_success:
 - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: LPuhtwmZoWc6FlnsVC9fUuyOD84xOwdcDdsdCnX9OD60/TPRmXj3Ht6myEyA7i49k/ofiMMp1kQNF0uJOfy2HmMwZ7o5dVq4YWr6bCO64EjP2q/z+3dXUHv9soRzw606ebAs7+So2TNthgXYkwaa+VNYOnmmYCGClmu6U2010jIksaDBQF+PVROBNSP4NYqQNttEvDqynUTpoyouBi9VZ+LvlrmFQgEV5o6YZmGxDuSlmaJm+EDkc5XtWgYi9LbDygBRbNC27tHZPOUwnqCi/ikXcQVGCgimQQIslO8qtcP/ebUfTrPHiuJm9fCAKl5VYm78XZYs/wvhWJeP72i/4AfLGbPsVW+ofHDmOaA7vrAnXJkdxQekq8Kql23WzR3/oQRKusbPu5dYud9hbhKPWEu605wb6Fr70Nc7c+qnk943okrx14y/ygNkf0E6UrIOi5z3r4XlByT/cmDyKxN/7lTECm+3Ez+s+9IYrWWwtGD3EE9sMxXNY21RP6fU1opIzq0VoN5911bMaOMDoK3RX6fCFRWPlSeOb0KoyJYD+JXPsVcu7r+q94pGWWb/yg26N8C/koPNNlTPwl4aJOXHmYVPVnY+q8XPrBqzM+Zd73JbGK4tIWWCid59Oliwyjudv2hUA/QQZheK+gzo4MK75kQlc8ZVjt9DFzZLLOLltLk=
   file: texstudio
