@@ -54,6 +54,7 @@ if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	/usr/local/opt/qt/bin/macdeployqt texstudio.app -dmg	
 
 	print_info "Renaming .dmg"
+        cp "${TRAVIS_BUILD_DIR}/"texstudio.dmg "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.dmg"
 	mv "${TRAVIS_BUILD_DIR}/"texstudio.dmg "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_OS_NAME}-${VERSION_NAME}.dmg"
 
 	print_info "Preparing bintray.json"
