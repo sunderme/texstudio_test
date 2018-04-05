@@ -63,6 +63,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
         }else{
             PKG_CONFIG_EXE = "pkg-config"
         }
+	LIBS += -L/usr/local/Cellar/poppler/0.61.0-texworks/lib
         system($${PKG_CONFIG_EXE} --atleast-version=0.24 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_24
         system($${PKG_CONFIG_EXE} --atleast-version=0.31 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_31
     }
