@@ -3,12 +3,6 @@ matrix:
   include:
   - env: QT=qt5osx
     os: osx
-  - env: QT=qt4
-    os: linux
-  - env: QT=qt5
-    os: linux
-  - env: QT=qt5NoPoppler
-    os: linux
 dist: trusty
 sudo: required
 branches:
