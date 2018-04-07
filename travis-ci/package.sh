@@ -51,7 +51,9 @@ echo "VERSION_NAME = ${VERSION_NAME}"
 
 if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	print_info "Running macdeployqt"
-	/usr/local/opt/qt/bin/macdeployqt texstudio.app -dmg -libpath=/usr/local/lib -verbose=3
+	/usr/local/opt/qt/bin/macdeployqt texstudio.app -libpath=/usr/local/lib
+        python ${TRAVIS_BUILD_DIR}/macdeployqtfix.py ${TRAVIS_BUILD_DIR}/texstudio.app/Contents/MacOS/texstudio /usr/local/opt/qt
+        zip -r ${TRAVIS_BUILD_DIR}/texstudio.zip ${TRAVIS_BUILD_DIR}/texstudio.app
 
 	print_info "Renaming .dmg"
         cp "${TRAVIS_BUILD_DIR}/"texstudio.dmg "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.dmg"
